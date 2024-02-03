@@ -3,22 +3,22 @@ import supabase from "../supabase";
 import Logout from "./logout";
 
 function Todos() {
-  const [countries, setCountries] = useState([]);
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    getCountries();
+    getTodos();
   }, []);
 
-  async function getCountries() {
+  async function getTodos() {
     const { data } = await supabase.from("todos").select();
-    setCountries(data);
+    setTodos(data);
   }
 
   return (
     <div>
       <ul>
-        {countries.map((country) => (
-          <li key={country.name}>{country.name}</li>
+        {todos.map((todo) => (
+          <li key={todo.name}>{todo.name}</li>
         ))}
       </ul>
       <Logout/>
